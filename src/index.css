@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: #E3EFF7;
+  color: black;
+  --baseColor: #6571FF;
+  --buttonColor: #0AC074;
+  --dangerColor: #F62947;
+  --optionalColor: #0099FB;
+  --borderColor: rgb(240, 237, 237);
+}
+
+/* =========================================
+Basic Style
+===========================================
+*/
+.bg-base-100 {
+  --tw-bg-opacity: 1;
+  background-color: white !important;
+}
+
+.input,
+.select,
+.file-input {
+  background-color: white !important;
+}
+
+.btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.modal-box {
+  background-color: white !important;
+  color: black;
+}
+
+.max-w-xs {
+  max-width: 100%;
+}
+
+/* =========================================
+Home page style
+===========================================
+*/
+.home-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cart-container {
+  width: 50%;
+  background-color: rgb(255, 255, 255);
+}
+
+/* =========================================
+Product Page style
+===========================================
+*/
+.product-container {
+  width: 50%;
+}
+
+.addButton {
+  background: var(--baseColor);
+  border: none;
+  color: white;
+}
+
+.homeButton {
+  background: var(--buttonColor);
+  border: none;
+  color: white;
+}
+
+.userButton {
+  background: #FF679B;
+  border: none;
+  color: white;
+}
+
+.pHeader-container {
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 2px;
+}
+
+.modal-container {
+  margin-top: 20px;
+}
+
+/* =========================================
+Single product style
+===========================================
+*/
+.single-product-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px;
+  padding: 20px;
+  padding-left: 0px;
+}
+
+.single-container {
+  border: 2px solid var(--borderColor);
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 50px rgb(239, 238, 239);
+}
+
+.single-container img {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+}
+
+.product-title {
+  margin-top: 20px;
+}
+
+.product-title h5 {
+  font-weight: 900;
+}
+
+.product-title p {
+  text-transform: capitalize;
+}
+
+.single-main-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.product-price span {
+  background-color: var(--baseColor);
+  color: white;
+  padding: 5px;
+  border-top-left-radius: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
