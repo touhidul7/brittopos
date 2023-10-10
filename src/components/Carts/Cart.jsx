@@ -1,9 +1,20 @@
+import CartItem from "./CartItem";
+import CartTotal from "./CartTotal";
 
 const Cart = () => {
     return (
-        <div>
-            <h1>Cart Page</h1>
-        </div>
+        <>
+            <div className="main-cart-container">
+                <div className="cart-container">
+                    <div className="cart-item">
+                        <CartItem />
+                    </div>
+                    <div className="cart-total">
+                        <CartTotal />
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 

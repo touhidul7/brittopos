@@ -41,6 +41,43 @@ Basic Style
   max-width: 100%;
 }
 
+.table :where(th, td) {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  vertical-align: middle;
+  color: black;
+}
+
+.table :where(thead, tbody) :where(tr:not(:last-child)),
+.table :where(thead, tbody) :where(tr:first-child:last-child) {
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-bottom-color: #e4e1e1;
+}
+
+.btm-nav {
+  position: fixed;
+  bottom: 10px;
+  left: 30px;
+  display: flex;
+  width: 43.7%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: env(safe-area-inset-bottom);
+  height: 4rem;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b1) / var(--tw-bg-opacity));
+  color: currentColor;
+}
+
+.mb-14 {
+  margin-bottom: 3.5rem;
+  margin-left: -30px;
+}
+
 /* =========================================
 Home page style
 ===========================================
@@ -48,12 +85,11 @@ Home page style
 .home-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 50px;
 }
 
 .cart-container {
-  width: 50%;
-  background-color: rgb(255, 255, 255);
+  width: 45%;
 }
 
 /* =========================================
@@ -62,6 +98,9 @@ Product Page style
 */
 .product-container {
   width: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .addButton {
@@ -78,6 +117,18 @@ Product Page style
 
 .userButton {
   background: #FF679B;
+  border: none;
+  color: white;
+}
+
+.paynow {
+  background: var(--buttonColor);
+  border: none;
+  color: white;
+}
+
+.listButton {
+  background-color: #F62947;
   border: none;
   color: white;
 }
@@ -146,4 +197,42 @@ Single product style
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* =========================================
+Cart style
+===========================================
+*/
+.cart-container {
+  background-color: white;
+  padding: 10px;
+  box-shadow: 10px 10px 50px rgb(239, 238, 239);
+  margin: 20px;
+  border-radius: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+.qty {
+  background: #E0E3FF;
+  padding: 5px;
+  border-radius: 5px;
+  padding-left: 13px;
+  padding-right: 13px;
+  color: black;
+  font-weight: 500;
+}
+
+.qty-number {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.cart-total {
+  position: absolute;
+  bottom: 50px;
+  left: 30px;
 }

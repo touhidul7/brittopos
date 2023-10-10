@@ -14,6 +14,11 @@ const ProductHeader = () => {
                             home
                         </span>
                     </a>
+                    <a className="btn listButton ml-3">
+                        <span className="material-symbols-outlined">
+                            format_list_bulleted
+                        </span>
+                    </a>
                     <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn addButton ml-3">
                         <span className="material-symbols-outlined">
                             add
