@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 
 
 const initialState = {
-    addProduct:[],
+    addProduct: [],
     productData: [],
     userInfo: null,
     payment: [],
@@ -21,10 +21,35 @@ export const productSlice = createSlice({
                 state.productData.push(action.payload)
                 toast.success('Add to cart successfully!')
             }
-        }
+        },
+        increment: (state, action) => {
+            const check = state.productData.find(item => item.id === action.payload.id)
+            if (check) {
+                check.quantity = check.quantity + 1
+            }
+        },
+        decrement: (state, action) => {
+            const check = state.productData.find(item => item.id === action.payload.id)
+            if (check.quantity === 1) {
+                check.quantity = 1
+            } else {
+                check.quantity = check.quantity - 1
+            }
+        },
+        removeCart: (state, action) => {
+            state.productData = state.productData.filter(item => item.id !== action.payload.id)
+        },
+        resetData: (state) => {
+            state.productData = [];
+        },
+        addProduct: (state, action) => {
+            state.addProduct.push(action.payload)
+            toast.success('Add to cart successfully!')
+
+        },
     },
 })
 
-export const { addToCart} = productSlice.actions
+export const { addToCart, increment, decrement, removeCart, resetData, addProduct } = productSlice.actions
 
 export default productSlice.reducer

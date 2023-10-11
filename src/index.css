@@ -78,6 +78,13 @@ Basic Style
   margin-left: -30px;
 }
 
+.textarea-accent {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--a) / var(--tw-border-opacity));
+  width: 100%;
+  background: white;
+}
+
 /* =========================================
 Home page style
 ===========================================
@@ -235,4 +242,31 @@ Cart style
   position: absolute;
   bottom: 50px;
   left: 30px;
+}
+
+/* Pay now style */
+
+.pay-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.pay-container div {
+  margin-top: 10px;
+}
+
+.pay-container input,
+select,
+textarea {
+  margin-top: 10px;
+}
+
+.two-block {
+  display: flex;
+  gap: 20px;
+}
+
+.product-summary {
+  margin-top: 50px !important;
 }
