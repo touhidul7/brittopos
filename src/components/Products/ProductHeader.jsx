@@ -1,3 +1,4 @@
+import ProductListModal from "../AllModals/ProductListModal";
 import ModalForm from "./ModalForm";
 
 const ProductHeader = () => {
@@ -14,11 +15,11 @@ const ProductHeader = () => {
                             home
                         </span>
                     </a>
-                    <a className="btn listButton ml-3">
+                    <button onClick={() => document.getElementById('product_list').showModal()} className="btn listButton ml-3">
                         <span className="material-symbols-outlined">
                             format_list_bulleted
                         </span>
-                    </a>
+                    </button>
                     <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn addButton ml-3">
                         <span className="material-symbols-outlined">
                             add
@@ -32,10 +33,21 @@ const ProductHeader = () => {
                     </a>
                 </div>
             </div>
-            {/* Modal Show Here*/}
+            {/* Modal Show for product Here*/}
             <dialog id="my_modal_3" className="modal">
                 <div className="modal-box">
                     <ModalForm />
+                    <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                </div>
+            </dialog>
+
+            {/* Modal Show for product list Here*/}
+            <dialog id="product_list" className="modal">
+                <div className="modal-box">
+                    <ProductListModal />
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>

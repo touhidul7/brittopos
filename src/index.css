@@ -157,10 +157,11 @@ Single product style
 */
 .single-product-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   gap: 20px;
   padding: 20px;
   padding-left: 0px;
+  width: 200px;
 }
 
 .single-container {
@@ -169,11 +170,12 @@ Single product style
   padding: 10px;
   border-radius: 10px;
   box-shadow: 10px 10px 50px rgb(239, 238, 239);
+  width: 200px;
 }
 
 .single-container img {
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  height: 200px;
   text-align: center;
 }
 
@@ -269,4 +271,11 @@ textarea {
 
 .product-summary {
   margin-top: 50px !important;
+}
+
+.list-img img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgb(231, 229, 229);
 }

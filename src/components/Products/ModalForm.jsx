@@ -7,7 +7,7 @@ const ModalForm = () => {
     const [productPrice, setProductPrice] = useState('')
     const [productCategory, setProductCategory] = useState('')
     const [productStock, setProductStock] = useState('')
-    const [productImage, setProductImage] = useState(null)
+    const [productImage, setProductImage] = useState('')
     // dispatch
     const dispatch = useDispatch();
     /* Random Number generator */
@@ -20,7 +20,7 @@ const ModalForm = () => {
     const addProductHandler = (e) => {
         e.preventDefault();
         if (productName === '' || productPrice === '' || productCategory === '' || productStock === '' || productImage === '') {
-            alert('Please fill all the fields')
+            alert('Please add category')
         } else {
             dispatch(addProduct({
                 id: randomNumber(),
@@ -39,13 +39,14 @@ const ModalForm = () => {
     }
     return (
         <div className="modal-container">
-            <form>
-                <input onChange={(e) => setProductName(e.target.value)} type="text" placeholder="Product Name" className="input input-bordered input-secondary w-full max-w-xs" value={productName} />
+            <h2 className='mb-4 text-2xl font-bold'>Product Add Here</h2>
+            <form onSubmit={addProductHandler}>
+                <input onChange={(e) => setProductName(e.target.value)} type="text" placeholder="Product Name" className="input input-bordered input-secondary w-full max-w-xs" value={productName} required />
                 <br /><br />
-                <input onChange={(e) => setProductPrice(e.target.value)} type="number" placeholder="Product Price" className="input input-bordered input-secondary w-full max-w-xs" value={productPrice} />
+                <input onChange={(e) => setProductPrice(e.target.value)} type="number" placeholder="Product Price" className="input input-bordered input-secondary w-full max-w-xs" value={productPrice} required />
                 <br /><br />
-                <select onChange={(e) => setProductCategory(e.target.value)} className="select select-secondary w-full max-w-xs" value={productCategory}>
-                    <option disabled selected>Product Category</option>
+                <select onChange={(e) => setProductCategory(e.target.value)} className="select select-secondary w-full max-w-xs" value={productCategory} required>
+                    <option disabled>Product Category</option>
                     <option value='Smartphones'>Smartphones</option>
                     <option value='Laptops'>Laptops</option>
                     <option value='Fragrances'>Fragrances</option>
@@ -54,11 +55,14 @@ const ModalForm = () => {
                     <option value='Home-Decoration'>Home-Decoration</option>
                 </select>
                 <br /><br />
-                <input onChange={(e) => setProductStock(e.target.value)} type="number" placeholder="In Stock" className="input input-bordered input-secondary w-full max-w-xs" value={productStock} />
+                <input onChange={(e) => setProductStock(e.target.value)} type="number" placeholder="In Stock" className="input input-bordered input-secondary w-full max-w-xs" value={productStock} required />
                 <br /><br />
-                <input onChange={(e) => setProductImage(e.target.files[0])} accept="image/*" type="file" className="file-input file-input-bordered file-input-secondary w-full max-w-xs" />
-                <br /><br />
-                <button onClick={addProductHandler} className="btn btn-primary">Add Product</button>
+                <input onChange={(e) => setProductImage(e.target.value)} type="url" placeholder=' Upload image URL' className="file-input file-input-bordered file-input-secondary w-full max-w-xs" value={productImage} required />
+                <span>
+                    <img style={{ height: '150px', width: '150px', objectFit: 'cover', borderRadius: '5px', marginTop: '15px' }} src={productImage ? productImage : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png'} alt={productName} />
+                </span>
+                <br />
+                <button type='submit' className="btn btn-primary">Add Product</button>
             </form>
 
         </div>

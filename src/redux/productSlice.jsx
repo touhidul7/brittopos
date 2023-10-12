@@ -43,13 +43,20 @@ export const productSlice = createSlice({
             state.productData = [];
         },
         addProduct: (state, action) => {
-            state.addProduct.push(action.payload)
-            toast.success('Add to cart successfully!')
-
+            const checkProduct = state.addProduct.find(item => item.title === action.payload.title)
+            if (checkProduct) {
+                toast.error('Product name already avaiable')
+            } else {
+                state.addProduct.push(action.payload)
+                toast.success('Product added successfully!')
+            }
+        },
+        removeProduct: (state, action) => {
+            state.addProduct = state.addProduct.filter(item => item.id !== action.payload.id)
         },
     },
 })
 
-export const { addToCart, increment, decrement, removeCart, resetData, addProduct } = productSlice.actions
+export const { addToCart, increment, decrement, removeCart, resetData, addProduct, removeProduct } = productSlice.actions
 
 export default productSlice.reducer

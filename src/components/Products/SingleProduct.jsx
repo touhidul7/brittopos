@@ -21,10 +21,10 @@ const SingleProduct = ({ item }) => {
             className="single-main-container">
             <div className="single-container">
                 <div className="product-img">
-                    <img src={URL.createObjectURL(thumbnail)} alt={title} />
+                    <img src={thumbnail} alt={title} />
                 </div>
                 <div className="product-title">
-                    <h5>{title.slice(0, 10)}</h5>
+                    <h5>{title}</h5>
                     <p>{category}</p>
                 </div>
                 <div className="product-price">
