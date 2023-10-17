@@ -54,9 +54,15 @@ export const productSlice = createSlice({
         removeProduct: (state, action) => {
             state.addProduct = state.addProduct.filter(item => item.id !== action.payload.id)
         },
+        // For payment purpose
+        addOrder: (state, action) => {
+            state.payment.push(action.payload)
+            toast.success('Order Successfully Placed!');
+
+        },
     },
 })
 
-export const { addToCart, increment, decrement, removeCart, resetData, addProduct, removeProduct } = productSlice.actions
+export const { addToCart, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder } = productSlice.actions
 
 export default productSlice.reducer

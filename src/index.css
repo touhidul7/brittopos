@@ -337,6 +337,8 @@ textarea {
   #contentToPrint,
   #contentToPrint * {
     visibility: visible;
+    width: 100%;
+    margin: auto !important;
 
   }
 

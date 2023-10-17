@@ -1,3 +1,4 @@
+import LoginModal from "../AllModals/LoginModal";
 import ProductListModal from "../AllModals/ProductListModal";
 import ModalForm from "./ModalForm";
 
@@ -26,11 +27,11 @@ const ProductHeader = () => {
                         </span>
                     </button>
 
-                    <a className="btn userButton ml-3">
+                    <button className="btn userButton ml-3" onClick={() => document.getElementById('login-modal').showModal()}>
                         <span className="material-symbols-outlined">
                             group
                         </span>
-                    </a>
+                    </button>
                 </div>
             </div>
             {/* Modal Show for product Here*/}
@@ -38,7 +39,6 @@ const ProductHeader = () => {
                 <div className="modal-box">
                     <ModalForm />
                     <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                 </div>
@@ -49,9 +49,17 @@ const ProductHeader = () => {
                 <div className="modal-box">
                     <ProductListModal />
                     <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
+                </div>
+            </dialog>
+            {/* Modal for login admin */}
+            <dialog id="login-modal" className="modal">
+                <div className="modal-box">
+                    <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <LoginModal />
                 </div>
             </dialog>
         </div>

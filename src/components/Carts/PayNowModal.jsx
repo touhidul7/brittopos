@@ -2,17 +2,44 @@
 
 import { useState } from "react";
 import Invoice from "../../invoice/Invoice";
+import { useDispatch, useSelector } from "react-redux";
+import { addOrder } from "../../redux/productSlice";
 
 const PayNowModal = ({ totalQty, totalPrice }) => {
     const [show, setShow] = useState(false)
+    const [paymentType, setPaymentType] = useState('')
+    const [note, setNote] = useState('')
+    const [paymentStatus, setPaymentStatus] = useState('')
+    // collect cart data
+    const productData = useSelector(state => state.posCart.productData);
+    const dispatch = useDispatch();
+
+
+    // order handle
     const payNowHandler = (e) => {
         e.preventDefault();
-        console.log('demo');
-        setShow(true);
+
+        if (paymentType === '' || paymentStatus === '') {
+            alert('Please all fill')
+        } else {
+            dispatch(addOrder({
+                cartData: productData,
+                totalQty: totalQty,
+                totalPrice: totalPrice,
+                paymentType: paymentType,
+                note: note,
+                paymentStatus: paymentStatus,
+                tax: 0.00,
+                discount: 0.00,
+                shipping: 0.00,
+            }))
+            setShow(true);
+        }
+
     }
     return (
         <>
-            <Invoice show={show} setShow={setShow} />
+            <Invoice show={show} setShow={setShow} totalQty={totalQty} totalPrice={totalPrice} paymentType={paymentType} note={note} paymentStatus={paymentStatus} tax={0.00} discount={0.00} shipping={0.00} />
             <div className="pay-container">
                 <form onSubmit={payNowHandler}>
                     <div className="product-history">
@@ -34,8 +61,9 @@ const PayNowModal = ({ totalQty, totalPrice }) => {
                             </div>
                             <div className="payment-type">
                                 <label>Select Payment Type : </label>
-                                <select className="select select-accent w-full max-w-xs">
-                                    <option disabled selected>Select Payment Type</option>
+                                <select onChange={(e) => setPaymentType(e.target.value)} value={paymentType} required
+                                    type="text" placeholder="Payment Type" className="input input-bordered input-accent w-full max-w-xs">
+                                    <option value="">Select Payment Type</option>
                                     <option value='Cash'>Cash</option>
                                     <option value='Bkash'>Bkash</option>
                                     <option value='Others'>Others</option>
@@ -44,18 +72,21 @@ const PayNowModal = ({ totalQty, totalPrice }) => {
                         </div>
                         <div className="row">
                             <label>Note : </label>
-                            <textarea className="textarea textarea-accent" placeholder="Enter Notes"></textarea>
+                            <textarea onChange={(e) => setNote(e.target.value)} value={note} className="textarea textarea-accent" placeholder="Enter Notes"></textarea>
                         </div>
                         <div className="row">
                             <label>Payment Status :</label>
-                            <select className="select select-accent w-full max-w-xs">
-                                <option disabled selected>Select Payment Status</option>
+                            <select onChange={(e) => setPaymentStatus(e.target.value)} value={paymentStatus} required className="select select-accent w-full max-w-xs">
+                                <option value="">Select Payment Status</option>
                                 <option value='Paid'>Paid</option>
                                 <option value='Unpaid'>Unpaid</option>
                             </select>
                         </div>
                         <div className="payNow-submit-button">
-                            <button className="btn listButton">Submit</button>
+                            {
+                                totalPrice !== 0 ? <button className="btn listButton">Submit</button> : ''
+                            }
+
                         </div>
                     </div>
                 </form>
