@@ -44,7 +44,6 @@ const CartTotal = ({ totalQty, totalPrice }) => {
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button, it will close the modal */}
-                            <button className="btn listButton">Submit</button>
                             <button className="ml-3 btn addButton">Close</button>
                         </form>
                     </div>
