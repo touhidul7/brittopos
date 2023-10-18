@@ -72,7 +72,7 @@ const Sidebar = () => {
                                     <span className="dashh-text">Analytics</span>
                                 </NavLink>
                             </li>
-                            <li>
+                            {/*  <li>
                                 <NavLink to="/dashboard/products" className={({ isActive, isPending }) =>
                                     isActive
                                         ? "active"
@@ -85,7 +85,7 @@ const Sidebar = () => {
                                     </span>
                                     <span className="dashh-text">Products</span>
                                 </NavLink>
-                            </li>
+                            </li> */}
 
                         </ul>
                     </div>

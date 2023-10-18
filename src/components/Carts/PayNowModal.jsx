@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import { useState } from "react";
@@ -10,10 +11,14 @@ const PayNowModal = ({ totalQty, totalPrice }) => {
     const [paymentType, setPaymentType] = useState('')
     const [note, setNote] = useState('')
     const [paymentStatus, setPaymentStatus] = useState('')
+    const [currentDate, setCurrentDate] = useState(new Date());
     // collect cart data
     const productData = useSelector(state => state.posCart.productData);
     const dispatch = useDispatch();
-
+    // formate date
+    const formattedDate = currentDate.toLocaleDateString();
+    // generate order invoice
+    const invoice = 'INV' + Math.floor(Math.random() * 1000000);
 
     // order handle
     const payNowHandler = (e) => {
@@ -23,6 +28,7 @@ const PayNowModal = ({ totalQty, totalPrice }) => {
             alert('Please all fill')
         } else {
             dispatch(addOrder({
+                invoiceNo: invoice,
                 cartData: productData,
                 totalQty: totalQty,
                 totalPrice: totalPrice,
@@ -32,6 +38,7 @@ const PayNowModal = ({ totalQty, totalPrice }) => {
                 tax: 0.00,
                 discount: 0.00,
                 shipping: 0.00,
+                date: formattedDate,
             }))
             setShow(true);
         }

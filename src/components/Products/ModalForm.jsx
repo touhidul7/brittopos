@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { addProduct } from '../../redux/productSlice';
 
@@ -8,6 +8,8 @@ const ModalForm = () => {
     const [productCategory, setProductCategory] = useState('')
     const [productStock, setProductStock] = useState('')
     const [productImage, setProductImage] = useState('')
+    // get category data
+    const categoryData = useSelector((state) => state.posCart.category)
     // dispatch
     const dispatch = useDispatch();
     /* Random Number generator */
@@ -47,12 +49,12 @@ const ModalForm = () => {
                 <br /><br />
                 <select onChange={(e) => setProductCategory(e.target.value)} className="select select-secondary w-full max-w-xs" value={productCategory} required>
                     <option disabled>Product Category</option>
-                    <option value='Smartphones'>Smartphones</option>
-                    <option value='Laptops'>Laptops</option>
-                    <option value='Fragrances'>Fragrances</option>
-                    <option value='Skincare'>Skincare</option>
-                    <option value='Groceries'>Groceries</option>
-                    <option value='Home-Decoration'>Home-Decoration</option>
+                    {
+                        categoryData.map((item, i) => {
+                            return <option key={i} value={item.name}>{item.name}</option>
+
+                        })
+                    }
                 </select>
                 <br /><br />
                 <input onChange={(e) => setProductStock(e.target.value)} type="number" placeholder="In Stock" className="input input-bordered input-secondary w-full max-w-xs" value={productStock} required />

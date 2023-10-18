@@ -7,6 +7,7 @@ const initialState = {
     productData: [],
     userInfo: null,
     payment: [],
+    category: [],
 }
 
 export const productSlice = createSlice({
@@ -58,11 +59,36 @@ export const productSlice = createSlice({
         addOrder: (state, action) => {
             state.payment.push(action.payload)
             toast.success('Order Successfully Placed!');
-
+        },
+        // for category purpose
+        addToCategory: (state, action) => {
+            const check = state.category.find(item => item.name === action.payload.name)
+            if (check) {
+                toast.error('Already this category in stored')
+            } else {
+                state.category.push(action.payload)
+                toast.success('Add to category successfully!')
+            }
+        },
+        removeCategory: (state, action) => {
+            const checking = state.category = state.category.filter(item => item.name !== action.payload.name)
+            if (checking) {
+                toast.success('Category delete successfully!')
+            }
+        },
+        // order purpose
+        resetOrder: (state) => {
+            state.payment = [];
+        },
+        removeOrder: (state, action) => {
+            const checking = state.payment = state.payment.filter(item => item.invoiceNo !== action.payload.id)
+            if (checking) {
+                toast.success('Order delete successfully!')
+            }
         },
     },
 })
 
-export const { addToCart, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder } = productSlice.actions
+export const { addToCart, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
 
 export default productSlice.reducer

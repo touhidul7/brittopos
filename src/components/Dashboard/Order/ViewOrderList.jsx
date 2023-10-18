@@ -1,9 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
-import { removeProduct } from "../../redux/productSlice";
+import { useState } from 'react';
+/* eslint-disable react/prop-types */
 
-const ProductListModal = () => {
-    const productList = useSelector(state => state.posCart.addProduct)
-    const dispatch = useDispatch();
+import { useEffect } from "react";
+
+const ViewOrderList = ({ invoice, orderData }) => {
+    const [orderProduct, setOrderProduct] = useState([])
+
+    useEffect(() => {
+        const checkingValue = orderData.find(item => item.invoiceNo === invoice)
+        if (checkingValue) {
+            setOrderProduct(checkingValue.cartData);
+        }
+    }, [invoice])
+
+    console.log(orderProduct);
+
     return (
         <div>
             <h2 className='mb-4 text-2xl font-bold'>Product List Here</h2>
@@ -13,35 +24,31 @@ const ProductListModal = () => {
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Category</th>
+                            <th>Qty</th>
                             <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
                         {
-                            productList.length === 0 ? <tr><td colSpan={3} className="text-center">No Product Found</td></tr> :
-                                productList.map((item, i) => {
+                            orderProduct.length === 0 ? <tr><td colSpan={3} className="text-center">No Product Found</td></tr> :
+                                orderProduct.map((item, i) => {
                                     return (
                                         <tr key={i}>
                                             <th>
                                                 <div className="list-img">
-                                                    <img src={item.thumbnail} alt={item.title} />
+                                                    <img src={item.image} alt={item.name} />
                                                 </div>
                                             </th>
-                                            <td>{item.title}</td>
+                                            <td>{item.id}</td>
+                                            <td>{item.name}</td>
                                             <td>{item.category}</td>
+                                            <td>{item.quantity}</td>
                                             <td>{item.price} $</td>
-                                            <td>
-                                                <button onClick={() => dispatch(removeProduct({
-                                                    id: item.id
-                                                }))} className='userButton rounded'>
-                                                    <span className="material-symbols-outlined p-1 ">
-                                                        delete
-                                                    </span>
-                                                </button>
-                                            </td>
+
                                         </tr>
                                     )
                                 })
@@ -53,4 +60,4 @@ const ProductListModal = () => {
     );
 };
 
-export default ProductListModal;
+export default ViewOrderList;
