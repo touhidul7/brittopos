@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import ModalForm from "../../Products/ModalForm";
+import ProductListModal from "../../AllModals/ProductListModal";
 
 const Sidebar = () => {
     return (
@@ -72,33 +74,37 @@ const Sidebar = () => {
                                     <span className="dashh-text">Analytics</span>
                                 </NavLink>
                             </li>
-                            {/*  <li>
-                                <NavLink to="/dashboard/products" className={({ isActive, isPending }) =>
-                                    isActive
-                                        ? "active"
-                                        : isPending
-                                            ? "pending"
-                                            : ""
-                                }>
-                                    <span className="material-symbols-outlined">
-                                        monitoring
-                                    </span>
-                                    <span className="dashh-text">Products</span>
-                                </NavLink>
-                            </li> */}
-
                         </ul>
                     </div>
                     <div className="sidebar-card">
-                        <div className="side-card-icon">
-                            <span className="lab la-codiepie"></span>
-                        </div>
+
                         <div>
-                            <h4>Make AdSense</h4>
-                            <p>add ads to your videos to earn money</p>
+                            <button onClick={() => document.getElementById('product-show').showModal()} className="btn btn-main btn-block mb-5 addButton">Create now</button>
+                            <h4>Make Product</h4>
+                            <p>add you product by clicking</p>
+
+                            <button onClick={() => document.getElementById('product_list').showModal()} className="btn btn-main btn-block mb-5 mt-5 listButton">See Products</button>
                         </div>
-                        <button className="btn btn-main btn-block">Create now</button>
+
                     </div>
+                    {/* Modal Show for product Here*/}
+                    <dialog id="product-show" className="modal">
+                        <div className="modal-box">
+                            <ModalForm />
+                            <form method="dialog">
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                        </div>
+                    </dialog>
+                    {/* Modal Show for product list Here*/}
+                    <dialog id="product_list" className="modal">
+                        <div className="modal-box">
+                            <ProductListModal />
+                            <form method="dialog">
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                        </div>
+                    </dialog>
                 </div>
             </div>
         </div >

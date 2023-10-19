@@ -7,16 +7,31 @@ const Order = () => {
     const orderData = useSelector((state) => state.posCart.payment)
     const dispatch = useDispatch();
     const [invoice, setInvoice] = useState();
+    const [search, setSearch] = useState('');
+    const [show, setShow] = useState('')
 
     // view order product list
     const viewOrderList = (invoiceNo) => {
         document.getElementById('view-order').showModal();
         setInvoice(invoiceNo);
     }
+    // search invoice 
+    setTimeout(() => {
+
+        /*   const searchInvoice = orderData.find((item) => item.invoiceNo === search)
+          setShow(searchInvoice) */
+    }, 2000)
+
+    console.log(show);
+
+
     return (
         <div>
             <h1 className="text-2xl mb-5 font-bold ">Order Info</h1>
-            <button disabled onClick={() => dispatch(resetOrder())} className="btn btn-success mb-5">Reset Order List</button>
+            {/* <button disabled onClick={() => dispatch(resetOrder())} className="btn btn-success mb-5">Reset Order List</button> */}
+
+            <input onChange={(e) => setSearch(e.target.value)} value={search} type="text" placeholder="Find here" className="input input-bordered input-accent w-full max-w-xs" />
+
             <div className="overflow-x-auto">
                 <table className="table border">
                     {/* head */}
@@ -35,7 +50,9 @@ const Order = () => {
                     <tbody>
                         {
                             orderData.length === 0 ? <tr><td colSpan={8} className="text-center">No Order Found</td></tr> :
-                                orderData.map((item, i) => {
+                                orderData.filter((item) =>
+                                    item.invoiceNo.includes(search)
+                                ).map((item, i) => {
                                     return (
                                         <tr key={i} className="bg-base-100">
                                             <th>{i + 1}</th>

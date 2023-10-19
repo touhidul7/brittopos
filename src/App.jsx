@@ -10,6 +10,7 @@ import Home from './components/Home/Home'
 import {
   createBrowserRouter,
   RouterProvider,
+  ScrollRestoration,
 } from "react-router-dom";
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
     <>
       <RouterProvider router={router} >
         <Home />
+        <ScrollRestoration />
       </RouterProvider>
 
     </>

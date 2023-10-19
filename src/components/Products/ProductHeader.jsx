@@ -21,7 +21,7 @@ const ProductHeader = () => {
                             format_list_bulleted
                         </span>
                     </button>
-                    <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn addButton ml-3">
+                    <button onClick={() => document.getElementById('product-show').showModal()} className="btn addButton ml-3">
                         <span className="material-symbols-outlined">
                             add
                         </span>
@@ -35,7 +35,7 @@ const ProductHeader = () => {
                 </div>
             </div>
             {/* Modal Show for product Here*/}
-            <dialog id="my_modal_3" className="modal">
+            <dialog id="product-show" className="modal">
                 <div className="modal-box">
                     <ModalForm />
                     <form method="dialog">

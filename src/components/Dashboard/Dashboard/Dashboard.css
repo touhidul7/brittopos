@@ -373,8 +373,9 @@ main {
 
 .rev-content img {
     width: 180px;
-    margin: 1.5rem 0;
+    margin: auto;
     border-radius: 50%;
+    margin-bottom: 20px;
 }
 
 .rev-info {
