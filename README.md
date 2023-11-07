@@ -1,6 +1,6 @@
 # Manual POS System
 
-## Live Link - https://poscart-ruddro.netlify.app
+## Live Link - https://pos.techitrick.com/
 ## Project Overview - https://youtu.be/XvzSVMOXLFw
 
 <img src="https://raw.githubusercontent.com/Ruddro420/react-pos-system/main/src/assets/pos-1.png">
