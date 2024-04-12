@@ -2,13 +2,30 @@ import LoginModal from "../AllModals/LoginModal";
 import ProductListModal from "../AllModals/ProductListModal";
 import ModalForm from "./ModalForm";
 
-const ProductHeader = () => {
+// eslint-disable-next-line react/prop-types
+const ProductHeader = ({ setSearch, search }) => {
+   // Debounce function to delay search execution
+   const debounce = (func, delay) => {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+};
+
+// Debounced function to handle search logic
+const debouncedHandleSearch = debounce((value) => {
+    setSearch(value);
+    // Here you can load your data or perform any search-related tasks
+    console.log("Search value:", value);
+    // Example: loadData(value);
+}, 2000); // Adjust the delay time as needed
 
     return (
         <div className="pHeader-container">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
-                    <input type="text" placeholder="Search here" className="input input-bordered w-full max-w-xs input-accent" />
+                    <input onChange={(e) => debouncedHandleSearch(e.target.value)} type="text" placeholder="Scan Bar Code" className="input input-bordered w-full max-w-xs input-accent" value={search} />
                 </div>
                 <div className="navbar-end">
                     <a className="btn homeButton">

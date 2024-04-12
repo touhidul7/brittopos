@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify"
 
-
 const initialState = {
     addProduct: [],
     productData: [],
@@ -15,12 +14,13 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const check = state.productData.find(item => item.id === action.payload.id)
-            if (check) {
-                toast.error('Already this product in cart')
+            const existingProduct = state.productData.find(item => item.id === action.payload.id);
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increase quantity if product already exists
+                //toast.info('Product quantity increased in cart');
             } else {
-                state.productData.push(action.payload)
-                toast.success('Add to cart successfully!')
+                state.productData.push({ ...action.payload, quantity: 1 }); // Add product with quantity 1 if it's not in the cart
+                //toast.success('Product added to cart successfully!');
             }
         },
         increment: (state, action) => {
@@ -46,7 +46,7 @@ export const productSlice = createSlice({
         addProduct: (state, action) => {
             const checkProduct = state.addProduct.find(item => item.title === action.payload.title)
             if (checkProduct) {
-                toast.error('Product name already avaiable')
+                toast.error('Product name already available')
             } else {
                 state.addProduct.push(action.payload)
                 toast.success('Product added successfully!')
@@ -64,31 +64,27 @@ export const productSlice = createSlice({
         addToCategory: (state, action) => {
             const check = state.category.find(item => item.name === action.payload.name)
             if (check) {
-                toast.error('Already this category in stored')
+                toast.error('Category already stored')
             } else {
                 state.category.push(action.payload)
-                toast.success('Add to category successfully!')
+                toast.success('Category added successfully!')
             }
         },
         removeCategory: (state, action) => {
-            const checking = state.category = state.category.filter(item => item.name !== action.payload.name)
-            if (checking) {
-                toast.success('Category delete successfully!')
-            }
+            state.category = state.category.filter(item => item.name !== action.payload.name)
+            toast.success('Category deleted successfully!')
         },
         // order purpose
         resetOrder: (state) => {
             state.payment = [];
         },
         removeOrder: (state, action) => {
-            const checking = state.payment = state.payment.filter(item => item.invoiceNo !== action.payload.id)
-            if (checking) {
-                toast.success('Order delete successfully!')
-            }
+            state.payment = state.payment.filter(item => item.invoiceNo !== action.payload.id)
+            toast.success('Order deleted successfully!')
         },
     },
 })
 
 export const { addToCart, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
 
-export default productSlice.reducer
+export default productSlice.reducer;

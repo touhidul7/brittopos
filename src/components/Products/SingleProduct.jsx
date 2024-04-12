@@ -26,6 +26,7 @@ const SingleProduct = ({ item }) => {
                 <div className="product-title">
                     <h5>{title}</h5>
                     <p>{category}</p>
+                    <p>#POS {id}</p>
                 </div>
                 <div className="product-price">
                     <span>{price} $</span>
